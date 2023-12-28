@@ -1,38 +1,38 @@
-// BodySegment.java
+ // BodySegment.java
 
-package com.snakegame;
+ package com.snakegame;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+ import javafx.scene.canvas.GraphicsContext;
+ import javafx.scene.paint.Color;
 
-public class BodySegment {
+ public class BodySegment {
 
-    public static final int SIZE = 20;
+     public static final int SIZE = 25;
 
-    private Color color;
-    private double x;
-    private double y;
+     private Color color;
+     private double x;
+     private double y;
 
-    public BodySegment(double x, double y,Color color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-    }
+     public BodySegment(double x, double y,Color color) {
+         this.x = x*SIZE;
+         this.y = y*SIZE;
+         this.color = color;
+     }
 
-    public double getX() {
-        return x;
-    }
+     public double getX() {
+         return x/SIZE;
+     }
 
-    public double getY() {
-        return y;
-    }
+     public double getY() {
+         return y/SIZE;
+     }
 
-    public boolean collidesWith(BodySegment other) {
-        return x == other.x && y == other.y;
-    }
+     public boolean collidesWith(BodySegment other) {
+         return x == other.x && y == other.y;
+     }
 
-    public void draw(GraphicsContext gc) {
-        gc.setFill(this.color);
-        gc.fillRect(x, y, SIZE, SIZE);
-    }
-}
+     public void draw(GraphicsContext gc) {
+         gc.setFill(this.color);
+         gc.fillRect(x, y, SIZE, SIZE);
+     }
+ }
