@@ -11,8 +11,8 @@ public class Food {
     private BodySegment visableFood;
 
     public Food() {
-        int randomX = (int) (Math.random() * 24);
-        int randomY = (int) (Math.random() * 24);
+        int randomX = (int) (Math.random() * 25);
+        int randomY = (int) (Math.random() * 25);
         this.visableFood = new BodySegment(randomX, randomY, color);
     }
 
@@ -20,7 +20,7 @@ public class Food {
         return this.visableFood.getX();
     }
     public double getY() {
-        return this.visableFood.getX();
+        return this.visableFood.getY();
     }
 
     public void draw(GraphicsContext gc) {

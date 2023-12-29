@@ -64,28 +64,37 @@ public class Game {
 
     }
     public void start(){
+        System.out.println("start");
         this.timeline.setCycleCount(Timeline.INDEFINITE);
+        System.out.println(Timeline.INDEFINITE);
         this.timeline.play();
+        System.out.println("play");
 
         this.stage.show();
     }
     private void handleKeyPress(KeyCode code) {
         // Handle key presses here (e.g., change snake direction)
+        // This code works regardless of any other dependencies
         switch (code) {
             case UP:
                 snake.changeDirection(Direction.UP);
+                System.out.println("up");
                 break;
             case DOWN:
                 snake.changeDirection(Direction.DOWN);
+                System.out.println("down");
                 break;
             case LEFT:
                 snake.changeDirection(Direction.LEFT);
+                System.out.println("left");
                 break;
             case RIGHT:
                 snake.changeDirection(Direction.RIGHT);
+                System.out.println("right");
                 break;
             case SPACE:
                 snake.changeDirection(Direction.STOP);
+                System.out.println("stop");
                 break;
         }
     }
@@ -109,14 +118,17 @@ public class Game {
         // Update game logic (e.g., move snake, check collisions)
 
         if (snake.getDirection() == Direction.STOP) {
-
+         //   System.out.println("stop update");
+            return;
         }else {
             this.timeline.play();
             snake.move();
+           // System.out.println("move update");
         }
 
         if (snake.eat(food)) {
             food = new Food();
+            System.out.println("new food update");
         }
         if (snake.checkCollision()) {
             System.out.println("Game Over!");

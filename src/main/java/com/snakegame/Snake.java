@@ -55,20 +55,22 @@
      public void draw(GraphicsContext gc) {
          // Draw each body segment of the snake
          for (BodySegment segment : body) {
+           //  System.out.println("draw");
              segment.draw(gc);
          }
      }
 
      public boolean checkCollision() {
          // Check if the snake collides with itself
-
          BodySegment head = getHead();
          if (head.getX() < 0 || head.getX() >= 24 ||
              head.getY() < 0 || head.getY() >= 24) {
+             System.out.println("hitting corner");
              return true;
          }
          for (int i = 1; i < body.size(); i++) {
              if (head.collidesWith(body.get(i))) {
+                 System.out.println("head collides with his body");
                  return true;
              }
          }
@@ -81,7 +83,11 @@
      public boolean eat(Food food) {
          // Check if the snake eats the given food
          BodySegment head = getHead();
+      //   System.out.println("head x "+head.getX()+"\nhead y"+head.getY());
+        // System.out.println("food x "+food.getX()+"\nfood y"+food.getY());
+
          if (head.getX() == food.getX() && head.getY() == food.getY()) {
+             System.out.println("eatting");
              grow();
              return true;
          }
