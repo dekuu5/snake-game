@@ -9,10 +9,12 @@
 
  public class Snake {
 
-     private static final int INITIAL_SIZE = 1;
+
+
      private static final Color SNAKE_COLOR = Color.GREEN;
 
      private LinkedList<BodySegment> body;
+     private int size = 1;
      private Direction direction;
 
      public Snake() {
@@ -38,7 +40,7 @@
          body.addFirst(newHead); // Add the new head
 
          // Remove the tail (last segment) to maintain the snake's length
-         if (body.size() > INITIAL_SIZE) {
+         if (body.size() > size) {
              body.removeLast();
          }
      }
@@ -69,6 +71,19 @@
              if (head.collidesWith(body.get(i))) {
                  return true;
              }
+         }
+         return false;
+     }
+     public void grow() {
+         // Grow the snake by one segment
+         size++;
+     }
+     public boolean eat(Food food) {
+         // Check if the snake eats the given food
+         BodySegment head = getHead();
+         if (head.getX() == food.getX() && head.getY() == food.getY()) {
+             grow();
+             return true;
          }
          return false;
      }
