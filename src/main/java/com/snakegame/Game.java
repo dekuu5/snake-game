@@ -131,10 +131,19 @@ public class Game {
     }
     private void gameOver() {
         // Handle game over here
-        this.snake.gameOver();
+//        this.snake.gameOver();
         // this.food.gameOver();
         // this.score.gameOver();
         this.timeline.stop();
+
+        this.scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                this.timeline.play();
+                this.snake = new Snake();
+                this.food = new Food();
+                this.score = new Score();
+            }
+        });
 
     }
 
