@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -25,6 +26,7 @@ public class Game {
     private Timeline timeline;
     private Food food;
     private Score score;
+
     GraphicsContext gc;
 
     public Game(Stage stage, int velocity, String title) {
@@ -44,6 +46,9 @@ public class Game {
 
 
 
+
+
+
         this.stage.resizableProperty().setValue(Boolean.FALSE);
         this.stage.setOnCloseRequest(e -> {
             e.consume();
@@ -51,6 +56,7 @@ public class Game {
         });
         stage.show();
     }
+
 
     public void setEvents(){
         this.scene.setOnKeyPressed(event -> {
@@ -68,9 +74,11 @@ public class Game {
         this.timeline.setCycleCount(Timeline.INDEFINITE);
         this.timeline.play();
 
+
         this.stage.show();
     }
     private void handleKeyPress(KeyCode code) {
+        System.out.println(code);
         // Handle key presses here (e.g., change snake direction)
         switch (code) {
             case UP:
@@ -89,18 +97,20 @@ public class Game {
                 snake.changeDirection(Direction.STOP);
                 break;
             case ENTER:
-
-                    this.timeline.play();
-                    this.snake = new Snake();
-                    this.food = new Food();
-                    this.score = new Score();
+                this.timeline.play();
+                this.snake = new Snake();
+                this.food = new Food();
+                this.score = new Score();
+                break;
+            case ESCAPE:
+                Platform.exit();
                 break;
         }
     }
     private void render() {
         // Clear the entire canvas
         this.gc.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-        drawGrid();
+//        drawGrid();
         this.snake.draw(gc);
         this.food.draw(gc);
         this.score.draw(gc, this.snake.getScore());
@@ -138,9 +148,13 @@ public class Game {
     }
     private void gameOver() {
         // Handle game over here
-//        this.snake.gameOver();
+        this.snake.gameOver();
         // this.food.gameOver();
         // this.score.gameOver();
+        this.gc.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+        this.gc.setFill(Color.WHITE);
+        this.gc.fillText("Game Over!", 250, 300);
+        this.gc.fillText("Press Enter to restart", 250, 350);
         this.timeline.stop();
 
 
