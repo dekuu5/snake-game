@@ -15,6 +15,7 @@
 
      private LinkedList<BodySegment> body;
      private int size = 1;
+     private int score = 0;
      private Direction direction;
 
      public Snake() {
@@ -78,11 +79,15 @@
          // Grow the snake by one segment
          size++;
      }
+     public void addScore() {
+         this.score += 10;
+     }
      public boolean eat(Food food) {
          // Check if the snake eats the given food
          BodySegment head = getHead();
          if (head.getX() == food.getX() && head.getY() == food.getY()) {
-             grow();
+             this.grow();
+             this.addScore();
              return true;
          }
          return false;
@@ -98,6 +103,9 @@
         // Handle game over here
         this.direction = Direction.STOP;
 
+    }
+    public int getScore() {
+        return this.score;
     }
 
      // Additional methods can be added based on the specific requirements of your game

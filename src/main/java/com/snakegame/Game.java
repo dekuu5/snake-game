@@ -24,6 +24,7 @@ public class Game {
     private Stage stage;
     private Timeline timeline;
     private Food food;
+    private Score score;
     GraphicsContext gc;
 
     public Game(Stage stage, int velocity, String title) {
@@ -60,7 +61,7 @@ public class Game {
         this.snake = new Snake();
         // todo: add food, score
          this.food = new Food();
-        // this.score = new Score();
+         this.score = new Score();
 
     }
     public void start(){
@@ -95,6 +96,7 @@ public class Game {
         drawGrid();
         this.snake.draw(gc);
         this.food.draw(gc);
+        this.score.draw(gc, this.snake.getScore());
 
     }
 
@@ -111,12 +113,13 @@ public class Game {
         if (snake.getDirection() == Direction.STOP) {
 
         }else {
-            this.timeline.play();
+
             snake.move();
         }
 
         if (snake.eat(food)) {
             food = new Food();
+
         }
         if (snake.checkCollision()) {
             System.out.println("Game Over!");

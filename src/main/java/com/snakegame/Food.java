@@ -20,7 +20,7 @@ public class Food {
         return this.visableFood.getX();
     }
     public double getY() {
-        return this.visableFood.getX();
+        return this.visableFood.getY();
     }
 
     public void draw(GraphicsContext gc) {
