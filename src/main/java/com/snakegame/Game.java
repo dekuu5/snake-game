@@ -88,6 +88,13 @@ public class Game {
             case SPACE:
                 snake.changeDirection(Direction.STOP);
                 break;
+            case ENTER:
+
+                    this.timeline.play();
+                    this.snake = new Snake();
+                    this.food = new Food();
+                    this.score = new Score();
+                break;
         }
     }
     private void render() {
@@ -136,14 +143,6 @@ public class Game {
         // this.score.gameOver();
         this.timeline.stop();
 
-        this.scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.SPACE) {
-                this.timeline.play();
-                this.snake = new Snake();
-                this.food = new Food();
-                this.score = new Score();
-            }
-        });
 
     }
 
