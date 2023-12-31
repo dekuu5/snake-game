@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Head
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=void\ foundFood()
+comment3.params=
+comment3.target=boolean\ isAtEdge()
+comment4.params=
+comment4.target=void\ death()
+comment5.params=
+comment5.target=int\ getScale()
+comment6.params=
+comment6.target=boolean\ getAlive()
+comment7.params=
+comment7.target=Head()
+comment8.params=aiControlled
+comment8.target=Head(boolean)
+numComments=9

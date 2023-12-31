@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Generation
+comment1.params=pLayerIn\ pLayerHidden\ pLayerOut\ pBiasIn\ pBiasHidden\ pBiasOut
+comment1.target=Generation(double[][],\ double[][],\ double[][],\ double[],\ double[],\ double[])
+comment2.params=
+comment2.target=double[][]\ getLayerIn()
+comment3.params=
+comment3.target=double[][]\ getLayerHidden()
+comment4.params=
+comment4.target=double[][]\ getLayerOut()
+comment5.params=
+comment5.target=double[]\ getBiasIn()
+comment6.params=
+comment6.target=double[]\ getBiasHidden()
+comment7.params=
+comment7.target=double[]\ getBiasOut()
+numComments=8
