@@ -66,10 +66,15 @@
          BodySegment head = getHead();
          if (head.getX() < 0 || head.getX() >= 24 ||
              head.getY() < 0 || head.getY() >= 24) {
+             System.out.println("hitting corner");
              return true;
          }
          for (int i = 1; i < body.size(); i++) {
              if (head.collidesWith(body.get(i))) {
+                 for (BodySegment bodySegment : body) {
+                     System.out.println(bodySegment);
+                 }
+                 System.out.println("head collides with body");
                  return true;
              }
          }
@@ -86,6 +91,9 @@
          // Check if the snake eats the given food
          BodySegment head = getHead();
          if (head.getX() == food.getX() && head.getY() == food.getY()) {
+             for (BodySegment bodySegment : body) {
+                 System.out.println(bodySegment);
+             }
              this.grow();
              this.addScore();
              return true;

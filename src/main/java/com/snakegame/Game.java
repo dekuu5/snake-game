@@ -126,6 +126,7 @@ public class Game {
 
         if (snake.eat(food)) {
             food = new Food();
+            System.out.println(food.getX()+"/"+ food.getY());
 
         }
         if (snake.checkCollision()) {

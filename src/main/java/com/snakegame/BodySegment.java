@@ -35,4 +35,9 @@
          gc.setFill(this.color);
          gc.fillRect(x, y, SIZE, SIZE);
      }
+
+     @Override
+     public String toString() {
+         return "body x = "+getX()+"y = "+getY();
+     }
  }
