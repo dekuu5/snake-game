@@ -1,15 +1,19 @@
 package com.snakegame;
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -25,6 +29,8 @@ public class Game {
     private Timeline timeline;
     private Food food;
     private Score score;
+    private Text gameOverText;
+
     GraphicsContext gc;
 
     public Game(Stage stage, int velocity, String title) {
@@ -62,6 +68,8 @@ public class Game {
         // todo: add food, score
          this.food = new Food();
          this.score = new Score();
+        this.gameOverText = new Text("Game Over!");
+
 
     }
     public void start(){
@@ -89,18 +97,24 @@ public class Game {
                 snake.changeDirection(Direction.STOP);
                 break;
             case ENTER:
+                if (timeline.getStatus() != Animation.Status.RUNNING) {
 
                     this.timeline.play();
                     this.snake = new Snake();
                     this.food = new Food();
                     this.score = new Score();
+                    root.getChildren().remove(gameOverText);}
+
+                break;
+            case ESCAPE:
+                Platform.exit();
                 break;
         }
     }
     private void render() {
         // Clear the entire canvas
         this.gc.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-        drawGrid();
+       // drawGrid();
         this.snake.draw(gc);
         this.food.draw(gc);
         this.score.draw(gc, this.snake.getScore());
@@ -143,6 +157,10 @@ public class Game {
         // this.food.gameOver();
         // this.score.gameOver();
         this.timeline.stop();
+        gameOverText.setFont(Font.font("Arial", 40));
+        gameOverText.setFill(Color.WHITE);
+
+        root.getChildren().add(gameOverText);
 
 
     }
